@@ -1,0 +1,104 @@
+## Deep Food
+#### 8 classes (dropout: 0.5)
+**10 iterations**: 50% test accuracy <br/>
+**20 iterations**: 55.38% <br/>
+**30 iterations**: loss: 1.3320 - val_loss: 1.3258
+Test = 0.5502, Train  = 0.6747 <br/>
+**50 iterations**: loss: 1.0033 - val_loss: 1.1839
+Test  = 0.618, Train  = 0.7912 <br/>
+**100 iterations**: loss: 1.3703  - val_loss: 1.3921
+Test  = 0.4594
+Train = 0.5132 <br/>
+**250 iterations**: 
+loss: 1.1524 - val_loss: 1.3816
+Test = 0.5370
+Train = 0.7350
+
+#### Add one more layer 128 filters (now lesser parameters) dropout 0.5
+Test Accuracy = 0.5343 Train Accuracy = 0.5992 <br/>
+#### Adding one dropout after the 5th conv layer
+bad performance:
+loss: 1.3748  val_loss: 1.6631
+Test Accuracy = 0.2583  Train Accuracy = 0.2928
+
+
+#### Remove the dropout between fc layers
+Overfitting: loss: 0.1633  val_loss: 2.6325
+Test Accuracy = 0.5696 (need investigation why it is ok)
+Train Accuracy = 0.9119
+
+#### No dropout between conv layers, but 0.5 between fc (still 5 conv layers)
+loss: 1.1716  val_loss: 1.4838
+Accuracy = 0.5934   
+Train Accuracy = 0.7508
+
+##### Early stopping (20 iterations) - 5 conv layers
+Test Accuracy = 0.5467
+Train Accuracy = 0.7785
+
+#### 4 conv layers, no dropout b/w conv layers
+**overfitting **<br/>
+loss: 0.7156  val_loss: 2.1416
+Test Accuracy = 0.5035
+Train Accuracy = 0.9434
+
+#### 4 conv layers, one dropout (0.5) between conv layers
+loss: 1.2606 - val_loss: 2.3975
+Test Accuracy = 0.4523
+Train Accuracy = 0.6652
+
+#### 4 conv layers, one dropout (0.25) between conv layers
+loss: 0.9270 - val_loss: 1.5388
+Test Accuracy = 0.4444
+Train Accuracy = 0.7466
+
+#### 5th convlayer without pooling (before dropout layer)
+loss: 1.0435 - val_loss: 1.3928
+Test Accuracy = 0.5687
+Train Accuracy = 0.7642
+
+### FC layers
+#### 40 
+loss: 1.0245 - val_loss: 1.1747 
+Test Accuracy = 0.6031   
+Train Accuracy = 0.7809
+
+#### 30
+loss: 0.9632 - val_loss: 1.2167
+Test = 0.5784
+Train = 0.7899
+
+#### 50
+loss: 0.8682 - val_loss: 1.4710
+Test = 0.5837
+ Train = 0.8791
+
+#### 100
+loss: 0.6193 - val_loss: 1.8436
+Test = 0.6005
+Train = 0.9024
+
+
+#### 10
+loss: 1.9945 - val_loss: 1.9959
+Test = 0.1358
+Train = 0.1778
+
+## Horizontally Flipped Data
+#### 4 conv layers (standard architecture + fc 40)
+loss: 1.0658 - val_loss: 1.1294 
+Test = 0.5661
+Train = 0.6833
+
+#### 5th conv layer without pooling
+loss: 1.9844 - val_loss: 1.8158
+Test = 0.2579
+Train = 0.2639
+
+
+## To do
+* More training data (flip images horizontally and vertically)
+* Pre trained nets
+* What's happening while overfitting. Do a class wise study
+* Ensemble of VGG and custom network 
+* Visualizing the filters
