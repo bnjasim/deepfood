@@ -195,6 +195,16 @@ top_model.add(Dense(8, activation='softmax'))
 top_model.load_weights(top_model_weights_path)
 print 'Top Model weights Loaded'
 # add the model on top of the convolutional base
+
+last = model.output
+
+x = Flatten()(last)
+x = Dense(1024, activation='relu')(x)
+preds = Dense(200, activation='softmax')(x)
+
+model = Model(initial_model.input, preds)
+
+
 model.add(top_model)
 
 # set the first 25 layers (up to the last conv block)
